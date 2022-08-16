@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pdc_bloc_example/counter_provider.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => CounterProvider(),
+    BlocProvider(
+      create: (_) => CounterCubit(),
       child: const MyApp(),
     )
   );
@@ -33,17 +33,17 @@ class MyStatelessHomepage extends StatelessWidget {
   const MyStatelessHomepage({ Key? key, required this.title }) : super(key: key);
 
   void _incrementCounter(BuildContext context) {
-    Provider.of<CounterProvider>(context, listen: false).increment();
+    context.read<CounterCubit>().increment();
   }
 
   void _decrementCounter(BuildContext context) {
-    Provider.of<CounterProvider>(context, listen: false).decrement();
+    context.read<CounterCubit>().decrement();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterProvider>(
-      builder:(context, value, child) {
+    return BlocBuilder<CounterCubit, int>(
+      builder:(BuildContext context, int state) {
         return Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -56,7 +56,7 @@ class MyStatelessHomepage extends StatelessWidget {
                 'You have pushed the button this many times:',
               ),
               Text(
-                value.count.toString(),
+                state.toString(),
                 style: Theme.of(context).textTheme.headline4,
               ),
             ],
