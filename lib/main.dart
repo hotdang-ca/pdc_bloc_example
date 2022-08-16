@@ -5,7 +5,7 @@ import 'package:pdc_bloc_example/counter_provider.dart';
 void main() {
   runApp(
     BlocProvider(
-      create: (_) => CounterCubit(),
+      create: (_) => CounterBLoC(),
       child: const MyApp(),
     )
   );
@@ -33,16 +33,16 @@ class MyStatelessHomepage extends StatelessWidget {
   const MyStatelessHomepage({ Key? key, required this.title }) : super(key: key);
 
   void _incrementCounter(BuildContext context) {
-    context.read<CounterCubit>().increment();
+    context.read<CounterBLoC>().add(CounterIncrementPressedEvent());
   }
 
   void _decrementCounter(BuildContext context) {
-    context.read<CounterCubit>().decrement();
+    context.read<CounterBLoC>().add(CounterDecrementPressedEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterCubit, int>(
+    return BlocBuilder<CounterBLoC, int>(
       builder:(BuildContext context, int state) {
         return Scaffold(
         appBar: AppBar(
