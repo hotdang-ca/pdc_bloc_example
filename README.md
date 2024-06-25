@@ -1,10 +1,10 @@
 # pdc_bloc_example
 
-A new Flutter project.
+A new Flutter BLoC project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application with BLoC.
 
 A few resources to get you started if this is your first Flutter project:
 
