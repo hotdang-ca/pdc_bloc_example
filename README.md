@@ -1,6 +1,6 @@
 # pdc_bloc_example
 
-A new Flutter BLoC project.
+A new Flutter BLoC project. It's the counter app, but with BLoC for event and state management.
 
 ## Getting Started
 
