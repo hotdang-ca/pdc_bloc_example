@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,12 +8,14 @@ class CounterCubit extends Cubit<int> {
 }
 
 abstract class CounterEvent {}
+
 class CounterIncrementPressedEvent extends CounterEvent {
   @override
   String toString() {
     return 'Count goes up!';
   }
 }
+
 class CounterDecrementPressedEvent extends CounterEvent {
   @override
   String toString() {

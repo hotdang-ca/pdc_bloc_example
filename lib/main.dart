@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pdc_bloc_example/counter_provider.dart';
 
 void main() {
-  runApp(
-    BlocProvider(
-      create: (_) => CounterBLoC(),
-      child: const MyApp(),
-    )
-  );
+  runApp(BlocProvider(
+    create: (_) => CounterBLoC(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
 class MyStatelessHomepage extends StatelessWidget {
   final String title;
 
-  const MyStatelessHomepage({ Key? key, required this.title }) : super(key: key);
+  const MyStatelessHomepage({Key? key, required this.title}) : super(key: key);
 
   void _incrementCounter(BuildContext context) {
     context.read<CounterBLoC>().add(CounterIncrementPressedEvent());
@@ -43,47 +41,47 @@ class MyStatelessHomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CounterBLoC, int>(
-      builder:(BuildContext context, int state) {
-        return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
+        builder: (BuildContext context, int state) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'You have pushed the button this many times:',
+                ),
+                Text(
+                  state.toString(),
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ],
+            ),
+          ),
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FloatingActionButton(
+                  onPressed: () => _incrementCounter(context),
+                  tooltip: 'Increment',
+                  child: const Icon(Icons.add),
+                ),
               ),
-              Text(
-                state.toString(),
-                style: Theme.of(context).textTheme.headline4,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FloatingActionButton(
+                  onPressed: () => _decrementCounter(context),
+                  tooltip: 'Decrement',
+                  child: const Icon(Icons.remove),
+                ),
               ),
             ],
-          ),
-        ),
-        floatingActionButton: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FloatingActionButton(
-                onPressed: () =>_incrementCounter(context),
-                tooltip: 'Increment',
-                child: const Icon(Icons.add),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FloatingActionButton(
-                onPressed: () => _decrementCounter(context),
-                tooltip: 'Decrement',
-                child: const Icon(Icons.remove),
-              ),
-            ),
-          ],) // This trailing comma makes auto-formatting nicer for build methods.
-      );
-      }
-    );
+          ) // This trailing comma makes auto-formatting nicer for build methods.
+          );
+    });
   }
 }
